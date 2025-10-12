@@ -3,9 +3,9 @@ const nodes = [];
 const offset = 10;
 const width = 400;
 const height = 400;
-
+let voronoi;
 function setup() {
-    createCanvas(height, width);
+    createCanvas(width, height);
 
     for (let i = 0; i < 4; i++) {
         nodes.push(
@@ -14,10 +14,20 @@ function setup() {
         )
     }
 
-    const voronoi = new Voronoi(height, width, nodes, colors)
-    voronoi.createVornoi();
+    voronoi = new Voronoi(height, width, nodes, colors)
+    voronoi.init();
 }
 
 function draw() {
     frameRate(30)
+    voronoi.updatePoints();
+    voronoi.createVoronoi();
+}
+
+function mousePressed() {
+    voronoi.mousePressedHandler()
+}
+
+function mouseReleased() {
+    voronoi.mouseReleasedHandler()
 }
