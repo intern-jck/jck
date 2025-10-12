@@ -2,7 +2,7 @@ class Point {
     constructor(x, y, w) {
         this.weight = w;
 
-        this.color = color(0, 0, 0);
+        // this.color = color(0, 0, 0);
         this.boundsX = [-1, -1];
         this.boundsY = [-1, -1];
         this.dragging = false;
@@ -15,7 +15,7 @@ class Point {
     }
 
     show() {
-        stroke(this.color);
+        stroke("black");
         strokeWeight(this.weight);
         point(this.position.x, this.position.y);
     }
@@ -35,8 +35,8 @@ class Point {
         this.velocity.set(v);
     }
 
-    color(r, g, b) {
-        this.color = color(r, g, b);
-    }
+    // color(r, g, b) {
+    //     this.color = color(r, g, b);
+    // }
 
 }

@@ -4,6 +4,7 @@ function sketch1(p) {
         p.createCanvas(720, 200);
         p.background(0);
     };
+
     p.draw = function () {
         p.circle(p.mouseX, p.mouseY, 50);
     };
