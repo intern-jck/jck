@@ -1,23 +1,16 @@
 class Point {
-    constructor(x, y, w) {
+    constructor(p, x, y, w, s = "black") {
+        this.p5 = p;
         this.weight = w;
-
-        // this.color = color(0, 0, 0);
-        this.boundsX = [-1, -1];
-        this.boundsY = [-1, -1];
+        this.stroke = s;
         this.dragging = false;
-        this.mouseOffset = createVector(0, 0)
-
-        // physics stuff
-        this.position = createVector(x, y);
-        this.velocity = createVector(0, 0);
-        this.acceleration = createVector(0, 0);
+        this.position = this.p5.createVector(x, y);
     }
 
     show() {
-        stroke("black");
-        strokeWeight(this.weight);
-        point(this.position.x, this.position.y);
+        this.p5.stroke(this.stroke);
+        this.p5.strokeWeight(this.weight);
+        this.p5.point(this.position.x, this.position.y);
     }
 
     move(v) {
@@ -30,13 +23,5 @@ class Point {
             this.position.y = y;
         }
     }
-
-    setVelocity(v) {
-        this.velocity.set(v);
-    }
-
-    // color(r, g, b) {
-    //     this.color = color(r, g, b);
-    // }
 
 }

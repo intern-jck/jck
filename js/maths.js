@@ -53,13 +53,12 @@ function voronoiSketch(p) {
             )
         }
 
-        voronoi = new Voronoi(height, width, nodes, colors)
+        voronoi = new Voronoi(p, height, width, nodes, colors)
         voronoi.init();
     }
 
     p.draw = () => {
-
-        frameRate(30)
+        p.frameRate(30)
         voronoi.updatePoints();
         voronoi.createVoronoi();
     }

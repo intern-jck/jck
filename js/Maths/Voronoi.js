@@ -1,5 +1,6 @@
 class Voronoi {
-    constructor(h, w, n, c, o = 10) {
+    constructor(p, h, w, n, c, o = 10) {
+        this.p5 = p;
         this.height = h;
         this.width = w;
         this.nodes = n;
@@ -18,6 +19,7 @@ class Voronoi {
         const p = [];
         for (let i = 0; i < this.nodes.length; i++) {
             let point = new Point(
+                this.p5,
                 this.nodes[i][0],
                 this.nodes[i][1],
                 6
@@ -41,15 +43,15 @@ class Voronoi {
         const polygons = [...voronoi.cellPolygons()];
 
         for (let i = 0; i < polygons.length; i++) {
-            beginShape();
+            this.p5.beginShape();
             for (let v of polygons[i]) {
-                vertex(v[0], v[1])
+                this.p5.vertex(v[0], v[1])
             }
 
-            stroke("black")
-            strokeWeight(1)
-            fill(colors[i % 5])
-            endShape()
+            this.p5.stroke("black")
+            this.p5.strokeWeight(1)
+            this.p5.fill(this.colors[i % 5])
+            this.p5.endShape()
         }
 
         for (let p of this.points) {
@@ -59,16 +61,16 @@ class Voronoi {
     }
 
     updatePoints() {
-        for (let i = 0; i < nodes.length; i++) {
-            this.points[i].drag(mouseX, mouseY)
+        for (let i = 0; i < this.nodes.length; i++) {
+            this.points[i].drag(this.p5.mouseX, this.p5.mouseY);
+            this.nodes[i] = [this.points[i].position.x, this.points[i].position.y];
             this.points[i].show();
-            this.nodes[i] = [this.points[i].position.x], this.points[i].position.y
         }
     }
 
     mousePressedHandler() {
         for (let p of this.points) {
-            if (dist(mouseX, mouseY, p.position.x, p.position.y) < 10) {
+            if (this.p5.dist(this.p5.mouseX, this.p5.mouseY, p.position.x, p.position.y) < 10) {
                 p.dragging = true;
             }
         }
