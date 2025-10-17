@@ -1,11 +1,17 @@
 // Function for first canvas
 function sketch1(p) {
     p.setup = function () {
-        p.createCanvas(720, 200);
-        p.background(0);
+        p.createCanvas(400, 200);
     };
 
     p.draw = function () {
+        p.background(100);
+        p.stroke(255);
+
+        p.fill(100);
+        p.circle(p.mouseX, p.mouseY, 60);
+
+        p.fill(255);
         p.circle(p.mouseX, p.mouseY, 50);
     };
 }
@@ -18,14 +24,19 @@ new p5(sketch1, document.getElementById('sketch-1'));
 // Function for second canvas
 function sketch2(p) {
     p.setup = function () {
-        p.createCanvas(720, 200);
-        p.background(255);
-        p.fill(0);
-        p.stroke(255);
+        p.createCanvas(400, 200);
+        // p.background(255);
     };
 
     p.draw = () => {
-        p.square(p.mouseX, p.mouseY, 50);
+        p.background(255)
+        p.stroke(255);
+
+        p.fill(100);
+        p.circle(p.mouseX, p.mouseY, 60);
+
+        p.fill(0);
+        p.circle(p.mouseX, p.mouseY, 50);
     };
 }
 
