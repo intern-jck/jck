@@ -1,7 +1,6 @@
 /*
 Voronoi Diagrams
 */
-
 function voronoiSketch(p) {
     const colors = ["red", "green", "blue", "magenta", "cyan"];
     const width = 400;
@@ -12,7 +11,7 @@ function voronoiSketch(p) {
 
     p.setup = () => {
         p.createCanvas(400, 400);
-        p.background(0);
+        p.background(255);
 
         for (let i = 0; i < 4; i++) {
             nodes.push(
@@ -45,4 +44,17 @@ new p5(voronoiSketch, document.getElementById("voronoi"));
 /*
 Vortex Graph
 */
+function vortexGraphSketch(p) {
+    p.setup = () => {
+        p.createCanvas(400, 400);
+        p.background(255);
+        vortex = new Vortex(p, 400, 400)
+        vortex.init();
+    }
 
+    p.draw = () => {
+        // p.frameRate(30)
+    }
+}
+
+new p5(vortexGraphSketch, document.getElementById("vortex"));
