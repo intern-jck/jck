@@ -8,9 +8,11 @@ function voronoiSketch(p) {
     const nodes = [];
     const offset = 10;
     let voronoi;
+    let slider;
+    let canvas;
 
     p.setup = () => {
-        p.createCanvas(400, 400);
+        canvas = p.createCanvas(400, 400);
         p.background(255);
 
         for (let i = 0; i < 4; i++) {
@@ -20,12 +22,19 @@ function voronoiSketch(p) {
             )
         }
 
+        slider = p.createSlider(0, 25);
+        slider.addClass("voronoi-count")
+        slider.input(sliderUpdate)
+        // slider.position(canvas.position().x, canvas.position().y);
+        slider.size(width);
+
         voronoi = new Voronoi(p, height, width, nodes, colors)
         voronoi.init();
     }
 
     p.draw = () => {
         p.frameRate(30)
+
         voronoi.updatePoints();
         voronoi.createVoronoi();
     }
@@ -36,6 +45,11 @@ function voronoiSketch(p) {
 
     p.mouseReleased = () => {
         voronoi.mouseReleasedHandler()
+    }
+
+    sliderUpdate = () => {
+        let val = slider.value();
+        console.log("slider: ", val)
     }
 }
 
@@ -53,7 +67,6 @@ function vortexGraphSketch(p) {
     }
 
     p.draw = () => {
-        // p.frameRate(30)
     }
 }
 

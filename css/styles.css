@@ -1,0 +1,187 @@
+/* Defaults */
+:root {
+    --active-color: #00aa22;
+    --font-color: black;
+    --border-2px: 2px solid black;
+    --border-4px: 4px solid black;
+    --border-8px: 8px solid black;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-size: 100%;
+    font-family: monospace;
+    color: var(--font-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--font-color);
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+a:hover,
+button:hover {
+    color: var(--active-color);
+    cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+/* Page */
+nav {
+    border: var(--border-4px);
+    height: 4rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+}
+
+.nav-home {
+    /* border: var(--border-2px); */
+    margin-left: 2rem;
+    margin-right: auto;
+}
+
+.nav-menu {
+    /* border: var(--border-2px); */
+    margin-right: 2rem;
+}
+
+.app-header {
+    text-align: center;
+}
+
+.app-content {
+    border: var(--border-4px);
+    margin: 1rem;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+
+}
+
+.home-canvas {
+    border: var(--border-4px);
+    height: 20rem;
+    width: 30rem;
+    /* margin: auto; */
+}
+
+.home-canvas canvas {
+    border: var(--border-2px);
+    height: 100%;
+    width: 100%;
+}
+
+.math-canvas {
+    border: var(--border-4px);
+    height: fit-content;
+    width: fit-content;
+}
+
+.math-canvas canvas {
+    border: var(--border-2px);
+    margin: 1rem;
+    height: 100%;
+    width: 100%;
+}
+
+.voronoi-count input {
+    border: var(--border-2px);
+    color: red;
+    margin-top: auto;
+    margin-bottom: 2rem;
+    /* position: relative; */
+}
+
+/* 
+.graph {
+    border: 4px solid black;
+    height: 40rem;
+    width: 60rem;
+} */
+/* 
+.svg-container {
+    width: 100%;
+    height: 100%;
+}
+
+.vector-graph-svg {
+    height: 100%;
+    width: 100%;
+}
+
+.controls {
+    border: 4px solid black;
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.control {
+    display: flex;
+}
+
+.control label {
+    font-size: 1.6rem;
+    margin-left: 1rem;
+    margin-right: auto;
+}
+
+.control input {
+    font-size: 1.6rem;
+    text-align: end;
+}
+
+.control input[type="range"] {
+    width: 20rem;
+    cursor: pointer;
+    margin-right: 1rem;
+} */
+
+/* MAP COLORS */
+/* .draggable {
+    cursor: move;
+}
+
+.svg-canvas {
+    border: 4px solid black;
+    padding: 1em;
+    width: 1200px;
+    height: 800px;
+}
+
+#canvas {
+    border: 4px solid green;
+} */
+
+
+@media screen and (orientation: landscape) and (max-width: 1024px) {}
+
+@media screen and (orientation: portrait) {}

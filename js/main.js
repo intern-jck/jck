@@ -1,5 +1,5 @@
-// Function for first canvas
-function sketch1(p) {
+// Canvas 1
+function canvas_1(p) {
     p.setup = function () {
         p.createCanvas(400, 200);
     };
@@ -16,16 +16,12 @@ function sketch1(p) {
     };
 }
 
-// Run first p5 instance
-new p5(sketch1, document.getElementById('sketch-1'));
+new p5(canvas_1, document.getElementById('canvas-1'));
 
-// let myp5 = new p5(s, document.getElementById('p5sketch'));
-
-// Function for second canvas
-function sketch2(p) {
+// Canvas 2
+function canvas_2(p) {
     p.setup = function () {
         p.createCanvas(400, 200);
-        // p.background(255);
     };
 
     p.draw = () => {
@@ -40,5 +36,4 @@ function sketch2(p) {
     };
 }
 
-// Run second p5 instance
-new p5(sketch2, document.getElementById('sketch-2'));
+new p5(canvas_2, document.getElementById('canvas-2'));

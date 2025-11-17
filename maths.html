@@ -5,31 +5,35 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>P5</title>
+  <title>JS ART</title>
 
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="stylesheet" type="text/css" href="../css/styles.css">
 
   <script src="../libraries/p5.min.js"></script>
   <!-- <script src="libraries/p5.sound.min.js"></script> -->
-
+  <!-- <script src="https://kit.fontawesome.com/cdcc65decb.js" crossorigin="anonymous"></script> -->
 </head>
 
 <body>
   <nav>
-    <div>
+    <div class="nav-home">
       <a href="/">Home</a>
+    </div>
+
+    <div class="nav-menu">
       <a href="shapes.html">Shapes</a>
       <a href="maths.html">Maths</a>
     </div>
   </nav>
 
-  <div>
-    <h1>Maths</h1>
-    <div class="math-graphs">
-      <div id="voronoi"></div>
-      <div id="vortex"></div>
+  <main>
+    <!-- <h1 class="app-header">Maths</h1> -->
+
+    <div class="app-content">
+      <div id="voronoi" class="math-canvas"></div>
+      <div id="vortex" class="math-canvas"></div>
     </div>
-  </div>
+  </main>
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="../js/Shapes/Point.js"></script>
