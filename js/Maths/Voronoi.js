@@ -11,12 +11,13 @@ class Voronoi {
     }
 
     init() {
-        this.createPoints();
+        this.generatePoints();
         this.createVoronoi();
     }
 
-    createPoints() {
+    generatePoints() {
         const p = [];
+
         for (let i = 0; i < this.nodes.length; i++) {
             let point = new Point(
                 this.p5,
@@ -26,6 +27,7 @@ class Voronoi {
             )
             p.push(point)
         }
+
         this.points = p;
     }
 
@@ -44,6 +46,7 @@ class Voronoi {
 
         for (let i = 0; i < polygons.length; i++) {
             this.p5.beginShape();
+
             for (let v of polygons[i]) {
                 this.p5.vertex(v[0], v[1])
             }
@@ -51,6 +54,7 @@ class Voronoi {
             this.p5.stroke("black")
             this.p5.strokeWeight(1)
             this.p5.fill(this.colors[i % 5])
+
             this.p5.endShape()
         }
 

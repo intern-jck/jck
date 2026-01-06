@@ -3,6 +3,8 @@ class Vortex {
         this.p5 = p;
         this.pi = Math.PI;
         this.tau = 2 * this.pi;
+        this.modulus = 16;
+        this.multiplier = 2;
 
         // this.svgWidth = w;
         // this.svgHeight = h;
@@ -21,8 +23,9 @@ class Vortex {
     }
 
     createVortex() {
+        console.log(this.multiplier, this.modulus)
         this.p5.circle(this.center, this.center, this.diameter)
-        this.createLines(this.center, this.radius, 4, 16);
+        this.createLines(this.center, this.radius, this.multiplier, this.modulus);
     }
 
     // Creates a array of svg lines based on inputs:
@@ -46,11 +49,10 @@ class Vortex {
 
                 // Create lines between these two points.
                 // let line = this.svgLine(x1, y1, x2, y2);
-                console.log("line", x1, y1, x2, y2)
+                // console.log("line", x1, y1, x2, y2)
                 this.p5.stroke("black");
                 this.p5.strokeWeight(1);
                 this.p5.line(x1, y1, x2, y2);
-
 
                 // Set color and add to svg...
                 // let lineLength = Math.floor(
