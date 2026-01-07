@@ -34,30 +34,38 @@ function draw() {
         point(x, y);
     }
 
-    // draw orbit
+    // draw venus orbit
+    let venusR = radius - 50;
+    noFill();
+    stroke(0);
+    strokeWeight(2);
+    arc(centerX, centerY, venusR * 2, venusR * 2, 0, 360);
+
+    // draw venus circle
+    let venusX = cos(frameCount * 0.25) * venusR + centerX;
+    let venusY = sin(frameCount * 0.25) * venusR + centerY;
+    fill(10, 10, 200);
+    noStroke();
+    ellipse(venusX, venusY, 30, 30);
+
+
+    // draw earth orbit
     noFill();
     stroke(0);
     strokeWeight(2);
     arc(centerX, centerY, radius * 2, radius * 2, 0, 360);
 
-    // draw blue circle
-    let blueX = cos(frameCount * 0.25) * radius + centerX;
-    let blueY = sin(frameCount * 0.25) * radius + centerY;
-    fill(10, 10, 200);
+    // draw earth
+    let earthX = cos(frameCount * 0.25 + 180) * radius + centerX;
+    let earthY = sin(frameCount * 0.25 + 180) * radius + centerY;
+    fill(100, 180, 100);
     noStroke();
-    ellipse(blueX, blueY, 50, 50);
+    ellipse(earthX, earthY, 75, 75);
 
-    // draw red circle
-    let redX = cos(frameCount * 0.25 + 180) * radius + centerX;
-    let redY = sin(frameCount * 0.25 + 180) * radius + centerY;
-    fill(200, 10, 10);
+    // draw moon
+    let moonX = cos(frameCount * 2) * 75 + earthX;
+    let moonY = sin(frameCount * 2) * 75 + earthY;
+    fill(100, 100, 100);
     noStroke();
-    ellipse(redX, redY, 75, 75);
-
-    // draw green circle
-    let greenX = cos(frameCount * 2) * 75 + redX;
-    let greenY = sin(frameCount * 2) * 75 + redY;
-    fill(10, 200, 10);
-    noStroke();
-    ellipse(greenX, greenY, 25, 25);
+    ellipse(moonX, moonY, 25, 25);
 }
