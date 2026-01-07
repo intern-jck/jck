@@ -25,14 +25,30 @@ function draw() {
     background(240);
 
     // draw orbit
-    stroke(0);
-    strokeWeight(8);
-    point(centerX, centerY);
+    // stroke(0);
+    fill(255, 165, 0);
+    // strokeWeight(2);
+    noStroke();
+    ellipse(centerX, centerY, 50, 50);
     for (let i = 0; i <= 360; i += 18) {
         x = cos(theta + i) * radius + centerX;
         y = sin(theta + i) * radius + centerY;
         point(x, y);
     }
+
+    // draw mercury orbit
+    let mercuryR = radius - 100;
+    noFill();
+    stroke(0);
+    strokeWeight(2);
+    arc(centerX, centerY, mercuryR * 2, mercuryR * 2, 0, 360);
+
+    // draw mercury circle
+    let mercuryX = cos(frameCount * 0.25 + 90) * mercuryR + centerX;
+    let mercuryY = sin(frameCount * 0.25 + 90) * mercuryR + centerY;
+    fill(200, 10, 200);
+    noStroke();
+    ellipse(mercuryX, mercuryY, 30, 30);
 
     // draw venus orbit
     let venusR = radius - 50;
@@ -47,7 +63,6 @@ function draw() {
     fill(10, 10, 200);
     noStroke();
     ellipse(venusX, venusY, 30, 30);
-
 
     // draw earth orbit
     noFill();
