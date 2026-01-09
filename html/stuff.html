@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>JS ART</title>
+  <title>jck</title>
 
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="../css/styles.css">
 
   <script src="../libraries/p5.min.js"></script>
   <!-- <script src="libraries/p5.sound.min.js"></script> -->
@@ -17,7 +17,7 @@
 <body>
   <nav>
     <div class="nav-home">
-      <a href="/">home</a>
+      <a href="../index.html">home</a>
     </div>
 
     <div class="nav-menu">
@@ -28,21 +28,24 @@
 
   <main>
     <div class="app">
-      <h1>Stuff</h1>
+      <!-- <h1>Stuff</h1> -->
       <div class="app-content">
         <div class="stuff-canvas">
           <div id="voronoi" class="math-canvas"></div>
           <div id="vortex" class="math-canvas"></div>
+          <div id="shapes" class="shapes-canvas"></div>
         </div>
       </div>
     </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-  <script src="../js/Shapes/Point.js"></script>
-  <script src="../js/Maths/Voronoi.js"></script>
-  <script src="../js/Maths/VortexGraph.js"></script>
+  <script src="../js/lib/Point.js"></script>
+  <script src="../js/lib/Rectangle.js"></script>
+  <script src="../js/lib/Voronoi.js"></script>
+  <script src="../js/lib/VortexGraph.js"></script>
   <script src="../js/stuff.js"></script>
+  <script src="../js/shapes.js"></script>
 </body>
 
 </html>
