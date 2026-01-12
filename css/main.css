@@ -85,12 +85,12 @@ nav {
 
 .home-canvas {
     border: var(--border-4px);
-    padding: 1rem;
+    /* padding: 1rem; */
+    width: 600px;
+    height: 600px;
 }
 
-.home-canvas canvas {
-    border: var(--border-4px);
-}
+.home-canvas canvas {}
 
 @media (max-width: 575px) {}
 
