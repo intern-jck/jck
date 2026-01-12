@@ -85,9 +85,8 @@ nav {
 
 .home-canvas {
     border: var(--border-4px);
-    /* padding: 1rem; */
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
 }
 
 .home-canvas canvas {}

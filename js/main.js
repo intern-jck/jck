@@ -5,14 +5,7 @@ let centerY = 0;
 let radius = 0;
 let theta = 0;
 
-// let x, y = 0
-// let circleX;
-// let circleY;
-// let rect;
-
 const CANVAS_ID = "home-canvas";
-
-
 
 function setup() {
 
@@ -20,8 +13,6 @@ function setup() {
     let c = document.getElementById(CANVAS_ID);
     let cWidth = c.clientWidth;
     let cHeight = c.clientHeight;
-    // let cWidth = c.offsetWidth;
-    // let cHeight = c.offsetHeight;
 
     console.log("c div: ", c, cWidth, cHeight);
 
@@ -51,7 +42,7 @@ function draw() {
     strokeWeight(2);
     arc(centerX, centerY, mercuryR * 2, mercuryR * 2, 0, 360);
 
-    // Draw Mercury planet
+    // Draw Mercury
     let mercuryX = cos(frameCount * 0.25) * mercuryR + centerX;
     let mercuryY = sin(frameCount * 0.25) * mercuryR + centerY;
     fill(200, 10, 10);
@@ -65,7 +56,7 @@ function draw() {
     strokeWeight(2);
     arc(centerX, centerY, venusR * 2, venusR * 2, 0, 360);
 
-    // Draw Venus planet
+    // Draw Venus
     let venusX = cos(frameCount * 0.25) * venusR + centerX;
     let venusY = sin(frameCount * 0.25) * venusR + centerY;
     fill(10, 200, 10);
@@ -79,7 +70,7 @@ function draw() {
     strokeWeight(2);
     arc(centerX, centerY, earthR * 2, earthR * 2, 0, 360);
 
-    // Draw Earth planet
+    // Draw Earth
     let earthX = cos(frameCount * 0.25) * earthR + centerX;
     let earthY = sin(frameCount * 0.25) * earthR + centerY;
     fill(10, 10, 200);
@@ -93,7 +84,7 @@ function draw() {
     strokeWeight(2);
     arc(earthX, earthY, moonR * 2, moonR * 2, 0, 360);
 
-    // Draw Moon planet
+    // Draw Moon
     let moonX = cos(frameCount * 2) * moonR + earthX;
     let moonY = sin(frameCount * 2) * moonR + earthY;
     fill(100, 100, 100);
