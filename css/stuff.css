@@ -19,21 +19,8 @@
     color: red;
     margin-top: auto;
     margin-bottom: 2rem;
-    /* position: relative; */
 }
 
 #voronoi {
     border: 2px solid red;
-}
-
-@media (max-width: 575px) {
-    /* Styles for small screens */
-}
-
-@media (min-width: 576px) and (max-width: 767px) {
-    /* Styles for medium screens */
-}
-
-@media (min-width: 768px) and (max-width: 1199px) {
-    /* Styles for large screens */
 }
