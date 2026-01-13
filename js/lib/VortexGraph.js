@@ -23,7 +23,7 @@ class Vortex {
     }
 
     createVortex() {
-        console.log(this.multiplier, this.modulus)
+        // console.log(this.multiplier, this.modulus)
         this.p5.circle(this.center, this.center, this.diameter)
         this.createLines(this.center, this.radius, this.multiplier, this.modulus);
     }
@@ -39,10 +39,12 @@ class Vortex {
             // It is also the digital root for base m
             let alpha = (i * m) % n;
             if (alpha != i) {
+
                 // Get x,y cords for two points along circle.
                 // Starting point.
                 let x1 = c + r * Math.sin((i * 2 * Math.PI) / n);
                 let y1 = c - r * Math.cos((i * 2 * Math.PI) / n);
+
                 // Ending point.
                 let x2 = c + r * Math.sin((m * i * 2 * Math.PI) / n);
                 let y2 = c - r * Math.cos((m * i * 2 * Math.PI) / n);

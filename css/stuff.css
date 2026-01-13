@@ -1,4 +1,30 @@
+.stuff-content {
+    border: 4px solid black;
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 .stuff-canvas {
+    border: var(--border-4px);
+    height: 300px;
+    width: 300px;
+}
+
+.stuff-canvas canvas {}
+
+
+
+/* .voronoi-count input {
+    border: var(--border-2px);
+    color: red;
+    margin-top: auto;
+    margin-bottom: 2rem;
+} */
+
+/* .stuff-canvas {
     border: var(--border-4px);
     height: fit-content;
     width: fit-content;
@@ -12,9 +38,9 @@
     margin: 1rem;
     height: 100%;
     width: 100%;
-}
+} */
 
-.voronoi-count input {
+/* .voronoi-count input {
     border: var(--border-2px);
     color: red;
     margin-top: auto;
@@ -23,4 +49,4 @@
 
 #voronoi {
     border: 2px solid red;
-}
+} */

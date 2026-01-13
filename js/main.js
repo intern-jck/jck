@@ -47,7 +47,7 @@ function draw() {
     let mercuryY = sin(frameCount * 0.25) * mercuryR + centerY;
     fill(200, 10, 10);
     noStroke();
-    ellipse(mercuryX, mercuryY, 25, 25);
+    ellipse(mercuryX, mercuryY, 20, 20);
 
     // Draw Venus orbit
     let venusR = 125;
@@ -61,7 +61,7 @@ function draw() {
     let venusY = sin(frameCount * 0.25) * venusR + centerY;
     fill(10, 200, 10);
     noStroke();
-    ellipse(venusX, venusY, 30, 30);
+    ellipse(venusX, venusY, 25, 25);
 
     // Draw Earth orbit
     let earthR = 175;
@@ -78,7 +78,7 @@ function draw() {
     ellipse(earthX, earthY, 30, 30);
 
     // Draw Moon orbit
-    let moonR = 40;
+    let moonR = 25;
     noFill();
     stroke(0);
     strokeWeight(2);

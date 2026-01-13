@@ -20,8 +20,7 @@
   <nav>
     <div class="nav-home">
       <a href="../index.html">home</a>
-    </div>-
-
+    </div>
     <div class="nav-menu">
       <a href="shapes.html">stuff</a>
       <a href="maths.html">src</a>
@@ -31,20 +30,22 @@
   <main>
     <div class="app">
       <div class="app-content">
-        <div id="voronoi" class="stuff-canvas"></div>
-        <div id="vortex" class="stuff-canvas"></div>
-        <div id="shapes" class="stuff-canvas"></div>
+        <div class="stuff-content">
+          <div id="voronoi" class="stuff-canvas"></div>
+          <div id="vortex" class="stuff-canvas"></div>
+          <div id="shapes" class="stuff-canvas"></div>
+        </div>
       </div>
     </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-  <script src="../js/lib/Point.js"></script>
-  <script src="../js/lib/Rectangle.js"></script>
+  <script src="../js/lib/Shapes.js"></script>
   <script src="../js/lib/Voronoi.js"></script>
   <script src="../js/lib/VortexGraph.js"></script>
   <script src="../js/stuff.js"></script>
-  <script src="../js/shapes.js"></script>
+  <!-- <script src="../js/shapes.js"></script> -->
+  <!-- <script src="../js/lib/Rectangle.js"></script> -->
 </body>
 
 </html>
