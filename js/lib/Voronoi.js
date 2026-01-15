@@ -1,22 +1,32 @@
 class Voronoi {
-    constructor(p, h, w, n, c, o = 10) {
+    constructor(p, w, h, n, c, o = 10) {
         this.p5 = p;
-        this.height = h;
         this.width = w;
+        this.height = h;
         this.nodes = n;
         this.colors = c;
         this.offset = o;
+
         this.points = [];
+        this.bounds = [
+            this.offset,
+            this.offset,
+            this.width - this.offset,
+            this.height - this.offset
+        ];
+
         this.delaunay = d3.Delaunay.from(this.nodes)
+        this.voronoi = null;
+        this.polygons = [];
     }
 
-    init() {
+    create() {
         this.generatePoints();
         this.createVoronoi();
     }
 
     generatePoints() {
-        const p = [];
+        this.points = [];
 
         for (let i = 0; i < this.nodes.length; i++) {
             let point = new Point(
@@ -25,43 +35,64 @@ class Voronoi {
                 this.nodes[i][1],
                 6
             )
-            p.push(point)
+            this.points.push(point);
         }
-
-        this.points = p;
     }
 
     createVoronoi() {
         this.delaunay = d3.Delaunay.from(this.nodes)
+        this.voronoi = this.delaunay.voronoi(this.bounds);
 
-        const bounds = [
-            this.offset,
-            this.offset,
-            this.width - this.offset,
-            this.height - this.offset
-        ];
+        for (let gon of this.voronoi.cellPolygons()) {
+            this.polygons.push(gon);
+        }
 
-        const voronoi = this.delaunay.voronoi(bounds);
-        const polygons = [...voronoi.cellPolygons()];
+        for (let i = 0; i < this.polygons.length; i++) {
+            let polygon = this.polygons[i];
 
-        for (let i = 0; i < polygons.length; i++) {
             this.p5.beginShape();
-
-            for (let v of polygons[i]) {
-                this.p5.vertex(v[0], v[1])
+            for (let v of polygon) {
+                this.p5.vertex(v[0], v[1]);
             }
 
-            this.p5.stroke("black")
-            this.p5.strokeWeight(1)
-            this.p5.fill(this.colors[i % 5])
-
-            this.p5.endShape()
+            this.p5.stroke("black");
+            this.p5.strokeWeight(1);
+            this.p5.endShape();
         }
 
         for (let p of this.points) {
             p.show();
         }
 
+    }
+
+    updateVoronoi() {
+        this.polygons = [];
+        this.delaunay = d3.Delaunay.from(this.nodes)
+        this.voronoi = this.delaunay.voronoi(this.bounds);
+
+        for (let gon of this.voronoi.cellPolygons()) {
+            this.polygons.push(gon)
+        }
+
+        for (let i = 0; i < this.polygons.length; i++) {
+
+            let polygon = this.polygons[i];
+
+            this.p5.beginShape();
+            for (let v of polygon) {
+                this.p5.vertex(v[0], v[1])
+            }
+
+            this.p5.stroke("black")
+            this.p5.strokeWeight(1)
+            this.p5.fill(this.colors[i % 5])
+            this.p5.endShape()
+        }
+
+        for (let p of this.points) {
+            p.show();
+        }
     }
 
     updatePoints() {

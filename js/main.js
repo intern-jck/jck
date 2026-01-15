@@ -1,25 +1,16 @@
-let width = 0;
-let height = 0;
 let centerX = 0;
 let centerY = 0;
-let radius = 0;
-let theta = 0;
 
 const CANVAS_ID = "home-canvas";
 
 function setup() {
 
-    // Get container div dimensions
     let c = document.getElementById(CANVAS_ID);
-    let cWidth = c.clientWidth;
-    let cHeight = c.clientHeight;
+    let width = c.clientWidth;
+    let height = c.clientHeight;
 
-    console.log("c div: ", c, cWidth, cHeight);
-
-    width = cWidth;
-    height = cHeight;
-    centerX = cWidth / 2;
-    centerY = cHeight / 2;
+    centerX = width / 2;
+    centerY = height / 2;
 
     const canvas = createCanvas(width, height);
     canvas.parent('home-canvas');
