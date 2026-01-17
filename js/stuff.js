@@ -134,9 +134,9 @@ function vortexGraphSketch(p) {
 new p5(vortexGraphSketch, document.getElementById("vortex"));
 
 /**
- * Shapes Sketch
+ * Blocks Sketch
  */
-function shapesSketch(p) {
+function blocksSketch(p) {
     let shape1 = new Rectangle(p, 25, 25, 25, 25);
     let shape2 = new Rectangle(p, 50, 50, 50, 50);
 
@@ -144,7 +144,7 @@ function shapesSketch(p) {
     let height = 0;
 
     p.setup = () => {
-        let c = document.getElementById("shapes");
+        let c = document.getElementById("blocks");
         width = c.clientWidth;
         height = c.clientHeight;
 
@@ -178,4 +178,4 @@ function shapesSketch(p) {
 
 }
 
-new p5(shapesSketch, document.getElementById("shapes"));
+new p5(blocksSketch, document.getElementById("blocks"));

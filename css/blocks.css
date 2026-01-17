@@ -1,0 +1,14 @@
+.blocks-content {
+    border: 4px solid black;
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.blocks-canvas {
+    border: var(--border-4px);
+    height: 500px;
+    width: 500px;
+}
