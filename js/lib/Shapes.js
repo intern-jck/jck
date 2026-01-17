@@ -1,4 +1,4 @@
-class Point {
+class PointInstance {
     constructor(p, x, y, w, s = "black") {
         this.p5 = p;
         this.weight = w;
@@ -25,6 +25,38 @@ class Point {
     }
 
 }
+
+class Point {
+    constructor(x, y, w, s = "black") {
+        // this.p5 = p;
+        this.weight = w;
+        this.stroke = s;
+        this.dragging = false;
+        this.position = createVector(x, y);
+    }
+
+    show() {
+        stroke(this.stroke);
+        strokeWeight(this.weight);
+        point(this.position.x, this.position.y);
+    }
+
+    move(v) {
+        this.position.add(v)
+    }
+
+    drag(x, y) {
+        if (this.dragging) {
+            this.position.x = x;
+            this.position.y = y;
+        }
+    }
+
+}
+
+
+
+
 
 class Rectangle {
     constructor(p, x, y, w, h) {
