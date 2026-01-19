@@ -28,35 +28,37 @@ class PointInstance {
 
 class Point {
     constructor(x, y, w, s = "black") {
-        // this.p5 = p;
         this.weight = w;
         this.stroke = s;
         this.dragging = false;
-        this.position = createVector(x, y);
+        this.x = x;
+        this.y = y;
     }
 
     show() {
         stroke(this.stroke);
         strokeWeight(this.weight);
-        point(this.position.x, this.position.y);
+        fill(0)
+        // point(this.x, this.y)
+        ellipse(this.x, this.y, 10, 10)
+        // ellipse.attribute('point')
+
+        // let myCircle = createCircle(this.x, this.y, 10);
     }
 
-    move(v) {
-        this.position.add(v)
-    }
+    // move(v) {
+    //     this.position.add(v)
+    // }
 
     drag(x, y) {
         if (this.dragging) {
-            this.position.x = x;
-            this.position.y = y;
+            this.x = x;
+            this.y = y;
         }
+        this.show()
     }
 
 }
-
-
-
-
 
 class Rectangle {
     constructor(p, x, y, w, h) {
@@ -112,4 +114,9 @@ class Rectangle {
         this.active = false;
         this.dragging = false;
     }
+}
+
+
+class Circle {
+
 }

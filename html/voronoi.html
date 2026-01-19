@@ -7,7 +7,15 @@
     <title>jck</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/voronoi.css">
-    <script src="../libraries/p5.min.js"></script>
+    <!-- <script src="../libraries/p5.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/p5.js-svg@1.3.1"></script> -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.6.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.dom.min.js"></script>
+
     <script src="https://kit.fontawesome.com/cdcc65decb.js" crossorigin="anonymous"></script>
 </head>
 
@@ -28,6 +36,14 @@
             <div class="app-content">
                 <div class="voronoi-content">
                     <div id="voronoi" class="voronoi-canvas"></div>
+                    <div class="voronoi-controls">
+                        <button onclick="decreaseNodes()"><i class="fa-solid fa-minus"></i></button>
+                        <p id="node-count">4</p>
+                        <button onclick="increaseNodes()"><i class="fa-solid fa-plus"></i></button>
+                        <button onclick="downloadSvg()">
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
