@@ -72,14 +72,20 @@ function createVortex(c, r, m, n) {
 }
 
 function updateModulus(value) {
-    console.log(value)
     modulus = value;
+    let modulusNumber = document.getElementById('modulus-number');
+    let modulusRange = document.getElementById('modulus-range');
+    modulusNumber.value = value;
+    modulusRange.value = value;
     createVortex(center, radius, multiplier, modulus);
 }
 
 function updateMultiplier(value) {
-    console.log(value)
     multiplier = value;
+    let multiplierNumber = document.getElementById('multiplier-number');
+    let multiplierRange = document.getElementById('multiplier-range');
+    multiplierNumber.value = value;
+    multiplierRange.value = value;
     createVortex(center, radius, multiplier, modulus);
 }
 
