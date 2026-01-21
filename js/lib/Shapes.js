@@ -133,16 +133,6 @@ class Rectangle {
         rect(this.x, this.y, this.w, this.h);
     }
 
-    hover() {
-        if (mouseX > this.x && mouseX < this.x + this.w &&
-            mouseY > this.y && mouseY < this.y + this.h
-        ) {
-            this.over = true;
-        } else {
-            this.over = false;
-        }
-    }
-
     update() {
         if (this.dragging) {
             this.x = mouseX + this.offsetX;
@@ -153,6 +143,16 @@ class Rectangle {
         this.y = this.y + this.velocity;
         if (this.x + this.h / 2 > height) {
 
+        }
+    }
+
+    hover() {
+        if (mouseX > this.x && mouseX < this.x + this.w &&
+            mouseY > this.y && mouseY < this.y + this.h
+        ) {
+            this.over = true;
+        } else {
+            this.over = false;
         }
     }
 

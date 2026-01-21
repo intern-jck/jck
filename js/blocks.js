@@ -1,4 +1,85 @@
 const colors = ["red", "green", "blue", "magenta", "cyan"];
+let offset = 5;
+
+class Block {
+    constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.speed = 0;
+        this.gravity = 0.1;
+        this.offsetX = 0;
+        this.offsetY = 0;
+        this.dragging = false;
+        this.over = false;
+        this.active = false;
+    }
+
+    show() {
+        fill(200)
+        stroke(0)
+        strokeWeight(2)
+        rect(this.x, this.y, this.w, this.h);
+    }
+
+    update() {
+
+        if (this.dragging) {
+            this.x = mouseX + this.offsetX;
+            this.y = mouseY + this.offsetY;
+        }
+
+        this.y = this.y + this.speed;
+        this.speed = this.speed + this.gravity;
+
+        if (this.atEdge()) {
+            this.speed = this.speed * 0;
+        }
+    }
+
+    checkCollision() {
+        if (this.atEdge) {
+            this.y = height;
+        }
+    }
+
+    atEdge() {
+        if (this.y > height - this.h - offset) {
+            return true
+        }
+
+        return false
+    }
+
+    hover() {
+        if (mouseX > this.x && mouseX < this.x + this.w &&
+            mouseY > this.y && mouseY < this.y + this.h
+        ) {
+            this.over = true;
+        } else {
+            this.over = false;
+        }
+    }
+
+    pressed() {
+        if (this.over) {
+            this.color = color(0, 200, 0)
+            this.active = true;
+            this.dragging = true;
+            this.offsetX = this.x - mouseX;
+            this.offsetY = this.y - mouseY;
+        }
+    }
+
+    released() {
+        this.color = color(0, 0, 200)
+        this.active = false;
+        this.dragging = false;
+    }
+}
+
+let block = null;
 
 function setup() {
     let c = document.getElementById("blocks");
@@ -8,16 +89,24 @@ function setup() {
     const canvas = createCanvas(width, height, SVG);
     canvas.parent('blocks');
     frameRate(60);
+
+    block = new Block(50, 50, 50, 50)
+    block.show();
 }
 
 function draw() {
     background(255);
+    block.show();
+    block.update();
+    block.hover();
 }
 
 function mousePressed() {
+    block.pressed();
 }
 
 function mouseReleased() {
+    block.released();
 }
 
 
