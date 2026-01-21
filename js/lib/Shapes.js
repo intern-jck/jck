@@ -82,7 +82,6 @@ class RectangleInstance {
     }
 }
 
-
 class Point {
     constructor(x, y, w, s = "black") {
         this.weight = w;
@@ -96,16 +95,8 @@ class Point {
         stroke(this.stroke);
         strokeWeight(this.weight);
         fill(0)
-        // point(this.x, this.y)
         ellipse(this.x, this.y, 10, 10)
-        // ellipse.attribute('point')
-
-        // let myCircle = createCircle(this.x, this.y, 10);
     }
-
-    // move(v) {
-    //     this.position.add(v)
-    // }
 
     drag(x, y) {
         if (this.dragging) {
@@ -114,8 +105,10 @@ class Point {
         }
         this.show()
     }
-
 }
+
+
+let gravity = 9.8;
 
 class Rectangle {
     constructor(x, y, w, h) {
@@ -128,6 +121,10 @@ class Rectangle {
         this.dragging = false;
         this.over = false;
         this.active = false;
+        this.ySpeed = 0;
+        this.acceleration = 0;
+        this.velocity = 0;
+        this.mass = 0;
     }
 
     show() {
@@ -151,6 +148,12 @@ class Rectangle {
             this.x = mouseX + this.offsetX;
             this.y = mouseY + this.offsetY;
         }
+        // this.acceleration = this.acceleration + gravity;
+        this.velocity = this.velocity + this.gravity;
+        this.y = this.y + this.velocity;
+        if (this.x + this.h / 2 > height) {
+
+        }
     }
 
     pressed() {
@@ -170,4 +173,3 @@ class Rectangle {
         this.dragging = false;
     }
 }
-
