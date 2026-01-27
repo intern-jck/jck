@@ -421,14 +421,3 @@ function showRules() {
 function closeRules() {
     document.getElementById("rules").style.height = "0%";
 }
-
-// Show/Close Contact Overlay
-function showContact() {
-    document.getElementById("contact").style.height = "100%";
-}
-
-function closeContact() {
-    document.getElementById("contact").style.height = "0%";
-}
-
-
