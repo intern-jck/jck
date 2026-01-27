@@ -11,7 +11,7 @@ class Game {
         this.cardsLeft = [];
         this.hintFound = false;
         this.hintSet = [];
-        this.newGame();
+        // this.newGame();
     }
 
     updateScoreboard() {
@@ -420,4 +420,86 @@ function showRules() {
 
 function closeRules() {
     document.getElementById("rules").style.height = "0%";
+}
+
+
+// Testing
+
+
+window.addEventListener("load", function () {
+    // Code to execute after the page is fully loaded
+    console.log("Page fully loaded!");
+});
+
+function createCard() {
+
+    let x = 100;
+    let y = 100;
+    let w = 140;
+    let h = 200;
+
+    // card center width
+    let w_c = x + (w / 2);
+
+    // divisions
+    let d = h / 4;
+    console.log(d)
+
+    // point heights
+    let p1 = y + (d * 1);
+    let p2 = y + (d * 2);
+    let p3 = y + (d * 3);
+    stroke(0)
+    strokeWeight(6)
+    noFill()
+
+    point(w_c, p1);
+    point(w_c, p2);
+    point(w_c, p3);
+
+    // draw card
+    strokeWeight(2)
+    rect(x, y, w, h);
+
+    // draw symbols
+
+    //circle
+    // diameter
+    let c_d = w * 0.25;
+    ellipse(w_c, p1, c_d, c_d)
+    ellipse(w_c, p2, c_d, c_d)
+    ellipse(w_c, p3, c_d, c_d)
+
+    // triangles
+    // base and height
+    let t_b = w * 0.125;
+    let t_h = w * 0.125;
+    triangle(w_c - t_b, p1 + t_h, w_c, p1 - t_h, w_c + t_b, p1 + t_h);
+    triangle(w_c - t_b, p2 + t_h, w_c, p2 - t_h, w_c + t_b, p2 + t_h);
+    triangle(w_c - t_b, p3 + t_h, w_c, p3 - t_h, w_c + t_b, p3 + t_h);
+
+    // squares
+    let s_w = w * 0.25;
+    let s_offset = s_w / 2;
+    rect(w_c - s_offset, p1 - s_offset, s_w, s_w)
+    rect(w_c - s_offset, p2 - s_offset, s_w, s_w)
+    rect(w_c - s_offset, p3 - s_offset, s_w, s_w)
+
+}
+
+function setup() {
+
+    let c = document.getElementById("set");
+    width = c.clientWidth;
+    height = c.clientHeight;
+
+    const canvas = createCanvas(width, height, SVG);
+    canvas.parent('set');
+    frameRate(60);
+    clear()
+
+    createCard()
+}
+
+function draw() {
 }
