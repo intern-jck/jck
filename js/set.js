@@ -457,17 +457,14 @@ function setup() {
     frameRate(60);
     clear()
 
-    // general settings
-
     createCard()
 
-    // drawSquiggle()
 }
 
 function draw() {
 }
 
-function createCard(color, count, shape, fill) {
+function createCard() {
 
     let x = 100;
     let y = 100;
@@ -482,74 +479,113 @@ function createCard(color, count, shape, fill) {
     rect(x, y, w, h);
 
     strokeWeight(8);
-
-    // one symbol
-    // stroke("red");
-    // let d1 = h / 2;
-    // let p1 = y + d1;
-    // point(w_c, p1);
-
-    // // two symbol
-    // stroke("blue");
-    // let d2 = h / 3;
-    // let p2a = y + (d2 * 1);
-    // let p2b = y + (d2 * 2);
-    // point(w_c, p2a);
-    // point(w_c, p2b);
-
-    // // three symbols
-    // stroke("orange");
-    // let d3 = h / 4;
-    // let p3a = y + (d3 * 1);
-    // let p3b = y + (d3 * 2);
-    // let p3c = y + (d3 * 3);
-    // point(w_c, p3a);
-    // point(w_c + 5, p3b);
-    // point(w_c, p3c);
-
     let c = 1;
+    let color = "red"
+    let shading = 0;
+    let shape = 0;
+
     let d = h / (c + 1)
     for (let i = 0; i < c; i++) {
         let p = y + (d * (i + 1))
         strokeWeight(6)
         point(w_c, p)
+
         strokeWeight(2)
         noFill()
-        ellipse(w_c, p, w * 0.25, w * 0.25)
+        stroke(color)
+        // fill(color)
+        noFill()
+
+        translate(w_c, p);
+        strokeWeight(6);
+
+        let radius = (w * 0.25) / 2;
+        let start = PI + PI / 9
+        let stop = TWO_PI - PI / 9
+        let increment = PI / (w * 0.075)
+
+
+        textSize(10);
+        // Get points along the top arc
+        for (let i = start; i <= stop; i += increment) {
+            let tx = radius * cos(i);
+            let ty = radius * sin(i);
+
+            // let count = i.toFixed(2)
+
+            // strokeWeight(1);
+            // noStroke()
+            // fill("black")
+            // text(count, tx, ty)
+
+            // stroke("red")
+            // strokeWeight(6);
+            // point(tx, ty);
+
+
+            let bx = radius * cos(i);
+            let by = -radius * sin(i);
+
+            // strokeWeight(1);
+            // noStroke()
+            // fill("black")
+            // text(count, bx, by)
+
+            // stroke("red")
+            // strokeWeight(6);
+            // point(bx, by);
+
+            // console.log(tx, ty, bx, by)
+
+            strokeWeight(1);
+            line(tx, ty, bx, by)
+        }
+
+        // Get points along the bottom arc
+        // for (let i = stop; i >= start; i -= increment) {
+
+        //     let bx = radius * cos(i);
+        //     let by = -radius * sin(i);
+
+        //     let count = i.toFixed(2)
+        //     // strokeWeight(1);
+        //     noStroke()
+        //     fill("black")
+        //     text(count, bx, by)
+
+        //     stroke("red")
+        //     strokeWeight(6);
+        //     point(bx, by);
+        // }
+
+        translate(-w_c, -p);
+        strokeWeight(2)
+        noFill()
+        ellipse(w_c, p, radius * 2, radius * 2)
+
+        // ellipse(w_c, p, w * 0.25, w * 0.25)
     }
 
-    // divisions
-    // point heights
-    // let p1 = y + (d * 1);
-    // let p3 = y + (d * 2);
-    // let p5 = y + (d * 3);
-
-    // let p2 = y + (d2 * 2);
-    // let p4 = y + (d2 * 4);
-
-    // stroke(0)
-    // strokeWeight(6)
-    // noFill()
-
-    // point(w_c, p2);
-    // point(w_c, p3);
-    // // point(w_c, p4);
-    // point(w_c, p5);
-
-    // draw symbols
-    // addCircles();
-    // let c_d = w * 0.25;
-    // ellipse(w_c, p1, c_d, c_d)
-    // ellipse(w_c, p2, c_d, c_d)
-    // ellipse(w_c, p3, c_d, c_d)
 
 }
 
-function addCircles(count, color, fill) {
+function createCircle(color, shading, x, y, d) {
+    stroke(color)
 
-    //circle
-    // diameter
+    switch (shading) {
+        case 0:
+            noFill()
+            break;
+        case 1:
+            //shaded
+            break;
+        case 2:
+            fill(color)
+            break;
+    }
 
+
+    ellipse(x, y, d, d)
 }
 
 // function addTriangles(count, color, fill) {
@@ -728,3 +764,59 @@ function drawSquiggle() {
     line(tx6, ty6, bx6, by6)
 
 }
+
+
+/**
+ Junkyard
+
+
+    // one symbol
+    // stroke("red");
+    // let d1 = h / 2;
+    // let p1 = y + d1;
+    // point(w_c, p1);
+
+    // // two symbol
+    // stroke("blue");
+    // let d2 = h / 3;
+    // let p2a = y + (d2 * 1);
+    // let p2b = y + (d2 * 2);
+    // point(w_c, p2a);
+    // point(w_c, p2b);
+
+    // // three symbols
+    // stroke("orange");
+    // let d3 = h / 4;
+    // let p3a = y + (d3 * 1);
+    // let p3b = y + (d3 * 2);
+    // let p3c = y + (d3 * 3);
+    // point(w_c, p3a);
+    // point(w_c + 5, p3b);
+    // point(w_c, p3c);
+
+
+    // divisions
+    // point heights
+    // let p1 = y + (d * 1);
+    // let p3 = y + (d * 2);
+    // let p5 = y + (d * 3);
+
+    // let p2 = y + (d2 * 2);
+    // let p4 = y + (d2 * 4);
+
+    // stroke(0)
+    // strokeWeight(6)
+    // noFill()
+
+    // point(w_c, p2);
+    // point(w_c, p3);
+    // // point(w_c, p4);
+    // point(w_c, p5);
+
+    // draw symbols
+    // addCircles();
+    // let c_d = w * 0.25;
+    // ellipse(w_c, p1, c_d, c_d)
+    // ellipse(w_c, p2, c_d, c_d)
+    // ellipse(w_c, p3, c_d, c_d)
+ */
