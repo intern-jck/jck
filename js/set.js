@@ -76,7 +76,8 @@ function createCard() {
                 createSquare(s_x, s_y, s_w, s_w, color, shading);
                 break;
             case "circle":
-                createCircle(w_c, symbolY, w * 0.25, color, shading);
+                let diameter = w * 0.25;
+                createCircle(w_c, symbolY, diameter, color, shading);
                 break;
 
             default:
@@ -99,7 +100,7 @@ function createCircle(x, y, d, color, shading) {
         case "shaded":
             let start = PI + PI / 9;
             let stop = TWO_PI - PI / 9;
-            let increment = PI / (d * 0.4);
+            let increment = PI / (d * 0.3);
             noFill();
             for (let i = start; i <= stop; i += increment) {
                 let tx = radius * cos(i);
@@ -164,7 +165,8 @@ function createSquare(x, y, w, h, color, shading) {
             break;
         case "shaded":
             noFill();
-            for (let i = 0.2; i < 1; i += 0.2) {
+            strokeWeight(1);
+            for (let i = 0; i < 1; i += 0.15) {
                 let x1 = lerp(x, x + w, i);
                 line(x1, y, x1, y + h);
             }
