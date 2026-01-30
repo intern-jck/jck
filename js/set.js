@@ -44,7 +44,7 @@ function createCard() {
     let w_c = x + w / 2;
 
     // card properties
-    let shape = "circle";
+    let shape = "triangle";
     let count = 3;
     let color = "red";
     let shading = "shaded";
@@ -61,59 +61,24 @@ function createCard() {
 
     for (let i = 0; i < count; i++) {
         let symbolY = y + divisions * (i + 1);
-        // strokeWeight(6);
-        // stroke(color);
-        // point(w_c, symbolY);
 
         switch (shape) {
             case "triangle":
-                // triangle()
+                let t_b = w * 0.125;
+                let t_h = w * 0.125;
+                createTriangle(w_c, symbolY, t_b, t_h, color, shading);
                 break;
             case "square":
+                let height = w * 0.25;
+                createSquare();
                 break;
             case "circle":
-                // ellipse(w_c, symbolY, 25, 25);
                 createCircle(w_c, symbolY, w * 0.25, color, shading);
                 break;
 
             default:
                 break;
         }
-
-        // let radius = (w * 0.25) / 2;
-        // // translate(w_c, point);
-        // createCircle(shading, w_c, p, radius * 2);
-        // stroke(color);
-        // switch (shading) {
-        //     case "none":
-        //         noFill();
-        //         break;
-        //     case "shaded":
-        //         let start = PI + PI / 9;
-        //         let stop = TWO_PI - PI / 9;
-        //         let increment = PI / (w * 0.075);
-        //         noFill();
-        //         for (let i = start; i <= stop; i += increment) {
-        //             let tx = radius * cos(i);
-        //             let ty = radius * sin(i);
-        //             let bx = radius * cos(i);
-        //             let by = -radius * sin(i);
-
-        //             strokeWeight(1);
-        //             line(tx, ty, bx, by);
-        //         }
-
-        //         break;
-        //     case "full":
-        //         fill(color);
-        //         break;
-        //     default:
-        //         break;
-        // }
-
-        // translate(-w_c, -point);
-        // strokeWeight(2);
-        // ellipse(w_c, point, radius * 2, radius * 2);
     }
 }
 
@@ -121,7 +86,6 @@ function createCircle(x, y, d, color, shading) {
     translate(x, y);
     let radius = d / 2;
 
-    // stroke(color);
     strokeWeight(2);
     stroke(color);
 
@@ -151,20 +115,41 @@ function createCircle(x, y, d, color, shading) {
     }
 
     translate(-x, -y);
-    // strokeWeight(2);
-    // ellipse(w_c, point, radius * 2, radius * 2);
     ellipse(x, y, d, d);
 }
 
-// function addTriangles(count, color, fill) {
-//     // triangles
-//     // base and height
-//     let t_b = w * 0.125;
-//     let t_h = w * 0.125;
-//     triangle(w_c - t_b, p1 + t_h, w_c, p1 - t_h, w_c + t_b, p1 + t_h);
-//     triangle(w_c - t_b, p2 + t_h, w_c, p2 - t_h, w_c + t_b, p2 + t_h);
-//     triangle(w_c - t_b, p3 + t_h, w_c, p3 - t_h, w_c + t_b, p3 + t_h);
-// }
+function createTriangle(x, y, b, h, color, shading) {
+    stroke(color);
+    strokeWeight(2);
+
+    switch (shading) {
+        case "none":
+            noFill();
+            break;
+        case "shaded":
+            noFill();
+            for (let i = 0.2; i <= 1; i += 0.2) {
+                let x1 = lerp(x - b, x, i);
+                let y1 = lerp(y + h, y - h, i);
+
+                let x2 = lerp(x, x + h, i);
+                let y2 = lerp(y - h, y + h, i);
+
+                strokeWeight(1);
+                line(x1, y1, x1, y + h);
+                line(x2, y2, x2, y + h);
+            }
+            break;
+        case "full":
+            fill("red");
+            break;
+        default:
+            break;
+    }
+
+    strokeWeight(2);
+    triangle(x - b, y + h, x, y - h, x + b, y + h);
+}
 
 // function addSquares(count, color, fill) {
 //     // squares
