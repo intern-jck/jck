@@ -44,7 +44,7 @@ function createCard() {
     let w_c = x + w / 2;
 
     // card properties
-    let shape = "triangle";
+    let shape = "square";
     let count = 3;
     let color = "red";
     let shading = "shaded";
@@ -69,8 +69,11 @@ function createCard() {
                 createTriangle(w_c, symbolY, t_b, t_h, color, shading);
                 break;
             case "square":
-                let height = w * 0.25;
-                createSquare();
+                let s_w = w * 0.25;
+                let s_offset = s_w / 2;
+                let s_x = w_c - s_offset;
+                let s_y = symbolY - s_offset;
+                createSquare(s_x, s_y, s_w, s_w, color, shading);
                 break;
             case "circle":
                 createCircle(w_c, symbolY, w * 0.25, color, shading);
@@ -151,14 +154,31 @@ function createTriangle(x, y, b, h, color, shading) {
     triangle(x - b, y + h, x, y - h, x + b, y + h);
 }
 
-// function addSquares(count, color, fill) {
-//     // squares
-//     let s_w = w * 0.25;
-//     let s_offset = s_w / 2;
-//     rect(w_c - s_offset, p1 - s_offset, s_w, s_w)
-//     rect(w_c - s_offset, p2 - s_offset, s_w, s_w)
-//     rect(w_c - s_offset, p3 - s_offset, s_w, s_w)
-// }
+function createSquare(x, y, w, h, color, shading) {
+    stroke(color);
+    strokeWeight(2);
+
+    switch (shading) {
+        case "none":
+            noFill();
+            break;
+        case "shaded":
+            noFill();
+            for (let i = 0.2; i < 1; i += 0.2) {
+                let x1 = lerp(x, x + w, i);
+                line(x1, y, x1, y + h);
+            }
+            break;
+        case "full":
+            fill("red");
+            break;
+        default:
+            break;
+    }
+
+    strokeWeight(2);
+    rect(x, y, w, h);
+}
 
 /**
  Junkyard
