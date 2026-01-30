@@ -1,6 +1,321 @@
 // Set Game Class
 // Contains all variables and functions for a game of Set.
 
+class Card {
+    constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+    }
+
+    draw() {}
+}
+
+// Testing
+window.addEventListener("load", function () {
+    // Code to execute after the page is fully loaded
+    console.log("Page fully loaded!");
+});
+
+function setup() {
+    let c = document.getElementById("set");
+    width = c.clientWidth;
+    height = c.clientHeight;
+
+    const canvas = createCanvas(width, height, SVG);
+    canvas.parent("set");
+    frameRate(60);
+    clear();
+
+    createCard();
+}
+
+function draw() {}
+
+function createCard() {
+    // card position and dimensions
+    let x = 100;
+    let y = 100;
+    let w = 140;
+    let h = 200;
+
+    // card center width
+    let w_c = x + w / 2;
+
+    // card properties
+    let count = 3;
+    let color = "red";
+    let shading = "none";
+    let shape = "circle";
+
+    // draw card
+    strokeWeight(2);
+    rect(x, y, w, h, 10);
+
+    // draw card symbols
+    // generate points to place symbols.
+    // Break up the height into d equal divisons.
+    // This makes placing the symbols evenly distrubuted.
+    let divisions = h / (count + 1);
+
+    for (let i = 0; i < count; i++) {
+        let symbolY = y + divisions * (i + 1);
+
+        strokeWeight(6);
+        point(w_c, symbolY);
+        // let radius = (w * 0.25) / 2;
+        // // translate(w_c, point);
+        // createCircle(shading, w_c, p, radius * 2);
+        // stroke(color);
+        // switch (shading) {
+        //     case "none":
+        //         noFill();
+        //         break;
+        //     case "shaded":
+        //         let start = PI + PI / 9;
+        //         let stop = TWO_PI - PI / 9;
+        //         let increment = PI / (w * 0.075);
+        //         noFill();
+        //         for (let i = start; i <= stop; i += increment) {
+        //             let tx = radius * cos(i);
+        //             let ty = radius * sin(i);
+        //             let bx = radius * cos(i);
+        //             let by = -radius * sin(i);
+
+        //             strokeWeight(1);
+        //             line(tx, ty, bx, by);
+        //         }
+
+        //         break;
+        //     case "full":
+        //         fill(color);
+        //         break;
+        //     default:
+        //         break;
+        // }
+
+        // translate(-w_c, -point);
+        // strokeWeight(2);
+        // ellipse(w_c, point, radius * 2, radius * 2);
+    }
+}
+
+function createCircle(shading, x, y, d) {
+    let point = y + divisions * (i + 1);
+    translate(w_c, point);
+    let radius = (w * 0.25) / 2;
+
+    stroke(color);
+
+    switch (shading) {
+        case "none":
+            noFill();
+            break;
+        case "shaded":
+            let start = PI + PI / 9;
+            let stop = TWO_PI - PI / 9;
+            let increment = PI / (w * 0.075);
+            noFill();
+            for (let i = start; i <= stop; i += increment) {
+                let tx = radius * cos(i);
+                let ty = radius * sin(i);
+                let bx = radius * cos(i);
+                let by = -radius * sin(i);
+
+                strokeWeight(1);
+                line(tx, ty, bx, by);
+            }
+
+            break;
+        case "full":
+            fill(color);
+            break;
+        default:
+            break;
+    }
+
+    translate(-w_c, -point);
+    strokeWeight(2);
+    // ellipse(w_c, point, radius * 2, radius * 2);
+    ellipse(x, y, d, d);
+}
+
+// function addTriangles(count, color, fill) {
+//     // triangles
+//     // base and height
+//     let t_b = w * 0.125;
+//     let t_h = w * 0.125;
+//     triangle(w_c - t_b, p1 + t_h, w_c, p1 - t_h, w_c + t_b, p1 + t_h);
+//     triangle(w_c - t_b, p2 + t_h, w_c, p2 - t_h, w_c + t_b, p2 + t_h);
+//     triangle(w_c - t_b, p3 + t_h, w_c, p3 - t_h, w_c + t_b, p3 + t_h);
+// }
+
+// function addSquares(count, color, fill) {
+//     // squares
+//     let s_w = w * 0.25;
+//     let s_offset = s_w / 2;
+//     rect(w_c - s_offset, p1 - s_offset, s_w, s_w)
+//     rect(w_c - s_offset, p2 - s_offset, s_w, s_w)
+//     rect(w_c - s_offset, p3 - s_offset, s_w, s_w)
+// }
+
+/**
+ Junkyard
+
+function drawSquiggle() {
+
+    let x = 50;
+    let y = 50;
+    let w = 100;
+    let h = 100;
+
+    noFill();
+    stroke(0);
+    strokeWeight(4);
+
+    // Draw the top curve
+    let topX1 = x;
+    let topY1 = y + 40;
+
+    let topX2 = x - 25;
+    let topY2 = y - 50;
+
+    let topX3 = x + 75;
+    let topY3 = y + 25;
+
+    let topX4 = x + w;
+    let topY4 = y - 25;
+
+    bezier(topX1, topY1, topX2, topY2, topX3, topY3, topX4, topY4);
+
+    // Draw the bottom curve
+    let bottomX1 = x;
+    let bottomY1 = y + 40;
+
+    let bottomX2 = x + 33;
+    let bottomY2 = y + 10;
+
+    let bottomX3 = x + 125;
+    let bottomY3 = y + 75;
+
+    let bottomX4 = x + w;
+    let bottomY4 = y - 25;
+
+    bezier(bottomX1, bottomY1, bottomX2, bottomY2, bottomX3, bottomY3, bottomX4, bottomY4);
+
+    // Draw points along the curve
+    stroke("red")
+    strokeWeight(6);
+
+    // for (let t = 0; t <= 1; t += 0.1) {
+    //     // Draw top points
+    //     strokeWeight(6);
+    //     let tx = bezierPoint(topX1, topX2, topX3, topX4, t);
+    //     let ty = bezierPoint(topY1, topY2, topY3, topY4, t);
+    //     point(tx, ty);
+
+    //     // Draw bottoms points
+    //     let bx = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, t);
+    //     let by = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, t);
+    //     point(bx, by);
+
+    //     // Draw a line connecting points
+    //     strokeWeight(2)
+    //     line(tx, ty, bx, by)
+    // }
+
+    // first point
+    strokeWeight(6);
+    let tx1 = bezierPoint(topX1, topX2, topX3, topX4, 0.33);
+    let ty1 = bezierPoint(topY1, topY2, topY3, topY4, 0.33);
+    point(tx1, ty1);
+
+    // Draw bottoms points
+    let bx1 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.1);
+    let by1 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.1);
+    point(bx1, by1);
+
+    // Draw a line connecting points
+    strokeWeight(2)
+    line(tx1, ty1, bx1, by1)
+
+    // second point
+    strokeWeight(6);
+    let tx2 = bezierPoint(topX1, topX2, topX3, topX4, 0.44);
+    let ty2 = bezierPoint(topY1, topY2, topY3, topY4, 0.44);
+    point(tx2, ty2);
+
+    // Draw bottoms points
+    let bx2 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.2);
+    let by2 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.2);
+    point(bx2, by2);
+
+    // Draw a line connecting points
+    strokeWeight(2)
+    line(tx2, ty2, bx2, by2)
+
+    // third point
+    strokeWeight(6);
+    let tx3 = bezierPoint(topX1, topX2, topX3, topX4, 0.55);
+    let ty3 = bezierPoint(topY1, topY2, topY3, topY4, 0.55);
+    point(tx3, ty3);
+
+    // Draw bottoms points
+    let bx3 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.3);
+    let by3 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.3);
+    point(bx3, by3);
+
+    // Draw a line connecting points
+    strokeWeight(2)
+    line(tx3, ty3, bx3, by3)
+
+    // fourth point
+    strokeWeight(6);
+    let tx4 = bezierPoint(topX1, topX2, topX3, topX4, 0.65);
+    let ty4 = bezierPoint(topY1, topY2, topY3, topY4, 0.65);
+    point(tx4, ty4);
+
+    // Draw bottoms points
+    let bx4 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.4);
+    let by4 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.4);
+    point(bx4, by4);
+
+    // Draw a line connecting points
+    strokeWeight(2)
+    line(tx4, ty4, bx4, by4)
+
+    // fifth point
+    strokeWeight(6);
+    let tx5 = bezierPoint(topX1, topX2, topX3, topX4, 0.75);
+    let ty5 = bezierPoint(topY1, topY2, topY3, topY4, 0.75);
+    point(tx5, ty5);
+
+    // Draw bottoms points
+    let bx5 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.5);
+    let by5 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.5);
+    point(bx5, by5);
+
+    // Draw a line connecting points
+    strokeWeight(2)
+    line(tx5, ty5, bx5, by5)
+
+    // sixth point
+    strokeWeight(6);
+    let tx6 = bezierPoint(topX1, topX2, topX3, topX4, 0.85);
+    let ty6 = bezierPoint(topY1, topY2, topY3, topY4, 0.85);
+    point(tx6, ty6);
+
+    // Draw bottoms points
+    let bx6 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.6);
+    let by6 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.6);
+    point(bx6, by6);
+
+    // Draw a line connecting points
+    strokeWeight(2)
+    line(tx6, ty6, bx6, by6)
+
+}
 class Game {
     constructor() {
         this.deckSize = 81;
@@ -424,350 +739,6 @@ function closeRules() {
     document.getElementById("rules").style.height = "0%";
 }
 
-
-class Card {
-    constructor(x, y, w, h) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-    }
-
-    draw() {
-
-    }
-
-}
-
-
-// Testing
-window.addEventListener("load", function () {
-    // Code to execute after the page is fully loaded
-    console.log("Page fully loaded!");
-});
-
-function setup() {
-
-    let c = document.getElementById("set");
-    width = c.clientWidth;
-    height = c.clientHeight;
-
-    const canvas = createCanvas(width, height, SVG);
-    canvas.parent('set');
-    frameRate(60);
-    clear()
-
-    createCard()
-
-}
-
-function draw() {
-}
-
-function createCard() {
-
-    let x = 100;
-    let y = 100;
-    let w = 140;
-    let h = 200;
-
-    // card center width
-    let w_c = x + (w / 2);
-
-    // draw card
-    strokeWeight(2);
-    rect(x, y, w, h);
-
-    strokeWeight(8);
-    let c = 1;
-    let color = "red"
-    let shading = 0;
-    let shape = 0;
-
-    let d = h / (c + 1)
-    for (let i = 0; i < c; i++) {
-        let p = y + (d * (i + 1))
-        strokeWeight(6)
-        point(w_c, p)
-
-        strokeWeight(2)
-        noFill()
-        stroke(color)
-        // fill(color)
-        noFill()
-
-        translate(w_c, p);
-        strokeWeight(6);
-
-        let radius = (w * 0.25) / 2;
-        let start = PI + PI / 9
-        let stop = TWO_PI - PI / 9
-        let increment = PI / (w * 0.075)
-
-
-        textSize(10);
-        // Get points along the top arc
-        for (let i = start; i <= stop; i += increment) {
-            let tx = radius * cos(i);
-            let ty = radius * sin(i);
-
-            // let count = i.toFixed(2)
-
-            // strokeWeight(1);
-            // noStroke()
-            // fill("black")
-            // text(count, tx, ty)
-
-            // stroke("red")
-            // strokeWeight(6);
-            // point(tx, ty);
-
-
-            let bx = radius * cos(i);
-            let by = -radius * sin(i);
-
-            // strokeWeight(1);
-            // noStroke()
-            // fill("black")
-            // text(count, bx, by)
-
-            // stroke("red")
-            // strokeWeight(6);
-            // point(bx, by);
-
-            // console.log(tx, ty, bx, by)
-
-            strokeWeight(1);
-            line(tx, ty, bx, by)
-        }
-
-        // Get points along the bottom arc
-        // for (let i = stop; i >= start; i -= increment) {
-
-        //     let bx = radius * cos(i);
-        //     let by = -radius * sin(i);
-
-        //     let count = i.toFixed(2)
-        //     // strokeWeight(1);
-        //     noStroke()
-        //     fill("black")
-        //     text(count, bx, by)
-
-        //     stroke("red")
-        //     strokeWeight(6);
-        //     point(bx, by);
-        // }
-
-        translate(-w_c, -p);
-        strokeWeight(2)
-        noFill()
-        ellipse(w_c, p, radius * 2, radius * 2)
-
-        // ellipse(w_c, p, w * 0.25, w * 0.25)
-    }
-
-
-}
-
-function createCircle(color, shading, x, y, d) {
-    stroke(color)
-
-    switch (shading) {
-        case 0:
-            noFill()
-            break;
-        case 1:
-            //shaded
-            break;
-        case 2:
-            fill(color)
-            break;
-    }
-
-
-    ellipse(x, y, d, d)
-}
-
-// function addTriangles(count, color, fill) {
-
-//     // triangles
-//     // base and height
-//     let t_b = w * 0.125;
-//     let t_h = w * 0.125;
-//     triangle(w_c - t_b, p1 + t_h, w_c, p1 - t_h, w_c + t_b, p1 + t_h);
-//     triangle(w_c - t_b, p2 + t_h, w_c, p2 - t_h, w_c + t_b, p2 + t_h);
-//     triangle(w_c - t_b, p3 + t_h, w_c, p3 - t_h, w_c + t_b, p3 + t_h);
-
-
-// }
-
-// function addSquares(count, color, fill) {
-//     // squares
-//     let s_w = w * 0.25;
-//     let s_offset = s_w / 2;
-//     rect(w_c - s_offset, p1 - s_offset, s_w, s_w)
-//     rect(w_c - s_offset, p2 - s_offset, s_w, s_w)
-//     rect(w_c - s_offset, p3 - s_offset, s_w, s_w)
-
-// }
-
-function drawSquiggle() {
-
-    let x = 50;
-    let y = 50;
-    let w = 100;
-    let h = 100;
-
-    noFill();
-    stroke(0);
-    strokeWeight(4);
-
-    // Draw the top curve
-    let topX1 = x;
-    let topY1 = y + 40;
-
-    let topX2 = x - 25;
-    let topY2 = y - 50;
-
-    let topX3 = x + 75;
-    let topY3 = y + 25;
-
-    let topX4 = x + w;
-    let topY4 = y - 25;
-
-    bezier(topX1, topY1, topX2, topY2, topX3, topY3, topX4, topY4);
-
-    // Draw the bottom curve
-    let bottomX1 = x;
-    let bottomY1 = y + 40;
-
-    let bottomX2 = x + 33;
-    let bottomY2 = y + 10;
-
-    let bottomX3 = x + 125;
-    let bottomY3 = y + 75;
-
-    let bottomX4 = x + w;
-    let bottomY4 = y - 25;
-
-    bezier(bottomX1, bottomY1, bottomX2, bottomY2, bottomX3, bottomY3, bottomX4, bottomY4);
-
-    // Draw points along the curve
-    stroke("red")
-    strokeWeight(6);
-
-    // for (let t = 0; t <= 1; t += 0.1) {
-    //     // Draw top points
-    //     strokeWeight(6);
-    //     let tx = bezierPoint(topX1, topX2, topX3, topX4, t);
-    //     let ty = bezierPoint(topY1, topY2, topY3, topY4, t);
-    //     point(tx, ty);
-
-    //     // Draw bottoms points
-    //     let bx = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, t);
-    //     let by = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, t);
-    //     point(bx, by);
-
-    //     // Draw a line connecting points
-    //     strokeWeight(2)
-    //     line(tx, ty, bx, by)
-    // }
-
-    // first point
-    strokeWeight(6);
-    let tx1 = bezierPoint(topX1, topX2, topX3, topX4, 0.33);
-    let ty1 = bezierPoint(topY1, topY2, topY3, topY4, 0.33);
-    point(tx1, ty1);
-
-    // Draw bottoms points
-    let bx1 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.1);
-    let by1 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.1);
-    point(bx1, by1);
-
-    // Draw a line connecting points
-    strokeWeight(2)
-    line(tx1, ty1, bx1, by1)
-
-    // second point
-    strokeWeight(6);
-    let tx2 = bezierPoint(topX1, topX2, topX3, topX4, 0.44);
-    let ty2 = bezierPoint(topY1, topY2, topY3, topY4, 0.44);
-    point(tx2, ty2);
-
-    // Draw bottoms points
-    let bx2 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.2);
-    let by2 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.2);
-    point(bx2, by2);
-
-    // Draw a line connecting points
-    strokeWeight(2)
-    line(tx2, ty2, bx2, by2)
-
-    // third point
-    strokeWeight(6);
-    let tx3 = bezierPoint(topX1, topX2, topX3, topX4, 0.55);
-    let ty3 = bezierPoint(topY1, topY2, topY3, topY4, 0.55);
-    point(tx3, ty3);
-
-    // Draw bottoms points
-    let bx3 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.3);
-    let by3 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.3);
-    point(bx3, by3);
-
-    // Draw a line connecting points
-    strokeWeight(2)
-    line(tx3, ty3, bx3, by3)
-
-    // fourth point
-    strokeWeight(6);
-    let tx4 = bezierPoint(topX1, topX2, topX3, topX4, 0.65);
-    let ty4 = bezierPoint(topY1, topY2, topY3, topY4, 0.65);
-    point(tx4, ty4);
-
-    // Draw bottoms points
-    let bx4 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.4);
-    let by4 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.4);
-    point(bx4, by4);
-
-    // Draw a line connecting points
-    strokeWeight(2)
-    line(tx4, ty4, bx4, by4)
-
-    // fifth point
-    strokeWeight(6);
-    let tx5 = bezierPoint(topX1, topX2, topX3, topX4, 0.75);
-    let ty5 = bezierPoint(topY1, topY2, topY3, topY4, 0.75);
-    point(tx5, ty5);
-
-    // Draw bottoms points
-    let bx5 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.5);
-    let by5 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.5);
-    point(bx5, by5);
-
-    // Draw a line connecting points
-    strokeWeight(2)
-    line(tx5, ty5, bx5, by5)
-
-    // sixth point
-    strokeWeight(6);
-    let tx6 = bezierPoint(topX1, topX2, topX3, topX4, 0.85);
-    let ty6 = bezierPoint(topY1, topY2, topY3, topY4, 0.85);
-    point(tx6, ty6);
-
-    // Draw bottoms points
-    let bx6 = bezierPoint(bottomX1, bottomX2, bottomX3, bottomX4, 0.6);
-    let by6 = bezierPoint(bottomY1, bottomY2, bottomY3, bottomY4, 0.6);
-    point(bx6, by6);
-
-    // Draw a line connecting points
-    strokeWeight(2)
-    line(tx6, ty6, bx6, by6)
-
-}
-
-
-/**
- Junkyard
 
 
     // one symbol
