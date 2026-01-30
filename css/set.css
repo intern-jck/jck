@@ -27,8 +27,8 @@ h1 {
 
 .set-canvas {
     border: var(--border-4px);
-    height: 500px;
-    width: 500px;
+    width: 600px;
+    height: 400px;
     margin: auto;
 }
 
@@ -43,19 +43,6 @@ button img {
     height: auto;
     color: red;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* PAGE DEFAULTS */
 /* :root {
@@ -212,8 +199,7 @@ body{
 }
 
 /* MEDIA QUERIES */
-@media (orientation: landscape) and (max-width:1000px) {
-
+@media (orientation: landscape) and (max-width: 1000px) {
     .game-buttons {
         flex-direction: column;
     }
@@ -231,11 +217,9 @@ body{
     .example-card {
         width: 10vw;
     }
-
 }
 
-@media (orientation: portrait) and (max-width:600px) {
-
+@media (orientation: portrait) and (max-width: 600px) {
     .game-buttons {
         flex-direction: row;
     }
