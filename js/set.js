@@ -44,10 +44,10 @@ function createCard() {
     let w_c = x + w / 2;
 
     // card properties
+    let shape = "circle";
     let count = 3;
     let color = "red";
-    let shading = "none";
-    let shape = "circle";
+    let shading = "shaded";
 
     // draw card
     strokeWeight(2);
@@ -61,9 +61,25 @@ function createCard() {
 
     for (let i = 0; i < count; i++) {
         let symbolY = y + divisions * (i + 1);
+        // strokeWeight(6);
+        // stroke(color);
+        // point(w_c, symbolY);
 
-        strokeWeight(6);
-        point(w_c, symbolY);
+        switch (shape) {
+            case "triangle":
+                // triangle()
+                break;
+            case "square":
+                break;
+            case "circle":
+                // ellipse(w_c, symbolY, 25, 25);
+                createCircle(w_c, symbolY, w * 0.25, color, shading);
+                break;
+
+            default:
+                break;
+        }
+
         // let radius = (w * 0.25) / 2;
         // // translate(w_c, point);
         // createCircle(shading, w_c, p, radius * 2);
@@ -101,11 +117,12 @@ function createCard() {
     }
 }
 
-function createCircle(shading, x, y, d) {
-    let point = y + divisions * (i + 1);
-    translate(w_c, point);
-    let radius = (w * 0.25) / 2;
+function createCircle(x, y, d, color, shading) {
+    translate(x, y);
+    let radius = d / 2;
 
+    // stroke(color);
+    strokeWeight(2);
     stroke(color);
 
     switch (shading) {
@@ -115,28 +132,26 @@ function createCircle(shading, x, y, d) {
         case "shaded":
             let start = PI + PI / 9;
             let stop = TWO_PI - PI / 9;
-            let increment = PI / (w * 0.075);
+            let increment = PI / (d * 0.4);
             noFill();
             for (let i = start; i <= stop; i += increment) {
                 let tx = radius * cos(i);
                 let ty = radius * sin(i);
                 let bx = radius * cos(i);
                 let by = -radius * sin(i);
-
                 strokeWeight(1);
                 line(tx, ty, bx, by);
             }
-
             break;
         case "full":
-            fill(color);
+            fill("red");
             break;
         default:
             break;
     }
 
-    translate(-w_c, -point);
-    strokeWeight(2);
+    translate(-x, -y);
+    // strokeWeight(2);
     // ellipse(w_c, point, radius * 2, radius * 2);
     ellipse(x, y, d, d);
 }
